@@ -1,0 +1,99 @@
+﻿# =============================================================
+# robots.txt — Malang Traveler (https://malangtraveler.web.id)
+# Optimized for SEO, AEO & GEO (Generative Engine Optimization)
+# Last Updated: 2026-09-20
+# =============================================================
+
+# ── Semua crawler web umum ──────────────────────────────────
+User-agent: *
+Allow: /
+Disallow: /scratch/
+Disallow: /walkthrough.md
+Disallow: /PRD_Malang_Traveler.md
+Disallow: /*.md$
+
+# ── Googlebot (Crawling & Indexing) ────────────────────────
+User-agent: Googlebot
+Allow: /
+Allow: /images/
+Allow: /*.webp$
+Allow: /*.html$
+Allow: /css/
+Allow: /js/
+Disallow: /scratch/
+
+# ── Google Image Bot ───────────────────────────────────────
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /*.webp$
+
+# ── Google News ────────────────────────────────────────────
+User-agent: Googlebot-News
+Allow: /blog/
+
+# ── Bingbot ────────────────────────────────────────────────
+User-agent: Bingbot
+Allow: /
+Allow: /images/
+Disallow: /scratch/
+
+# ── DuckDuckBot ────────────────────────────────────────────
+User-agent: DuckDuckBot
+Allow: /
+
+# ── Yahoo Slurp ────────────────────────────────────────────
+User-agent: Slurp
+Allow: /
+
+# ── Yandex ─────────────────────────────────────────────────
+User-agent: YandexBot
+Allow: /
+
+# ── GPTBot (ChatGPT / OpenAI) — GEO: Izinkan ──────────────
+User-agent: GPTBot
+Allow: /
+Allow: /blog/
+Allow: /program/
+Allow: /paket/
+Allow: /destinasi/
+
+# ── Google-Extended (Gemini AI) — GEO: Izinkan ─────────────
+User-agent: Google-Extended
+Allow: /
+
+# ── PerplexityBot — GEO: Izinkan ───────────────────────────
+User-agent: PerplexityBot
+Allow: /
+
+# ── Anthropic-AI (Claude) — GEO: Izinkan ───────────────────
+User-agent: anthropic-ai
+Allow: /
+
+# ── ClaudeBot — GEO: Izinkan ────────────────────────────────
+User-agent: ClaudeBot
+Allow: /
+
+# ── Meta-ExternalAgent (Meta AI) — GEO: Izinkan ────────────
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# ── Cohere AI — GEO: Izinkan ───────────────────────────────
+User-agent: cohere-ai
+Allow: /
+
+# ── Applebot (Apple / Siri) — GEO: Izinkan ─────────────────
+User-agent: Applebot
+Allow: /
+
+# ── SEO Tools (untuk monitoring dan audit) ─────────────────
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: SemrushBot
+Allow: /
+
+User-agent: MJ12bot
+Allow: /
+
+# ── Sitemap ─────────────────────────────────────────────────
+Sitemap: https://malangtraveler.web.id/sitemap.xml
