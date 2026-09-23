@@ -3,8 +3,7 @@
    Stack: Bootstrap 5 + Custom CSS
    ============================================= */
 
-/* --- Google Fonts --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap');
+/* --- Google Fonts loaded via <link> in HTML head (non-blocking) --- */
 
 /* --- CSS Variables --- */
 :root {

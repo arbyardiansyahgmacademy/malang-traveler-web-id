@@ -19,12 +19,93 @@
   <!-- Favicon -->
   <link rel="icon" type="image/webp" href="images/logo-utama-web-malang-traveler/logo-malang-traveler-fix.webp">
 
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- ═══ PERFORMANCE: DNS Preconnect (eliminasi DNS lookup latency) ═══ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+  <!-- ═══ PERFORMANCE: Preload LCP Images (gambar yang pertama terlihat di viewport) ═══ -->
+  <link rel="preload" as="image" href="images/hero-bromo-sunrise.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="images/side-hero/gambar-side-hero-clean.webp">
+
+  <!-- ═══ PERFORMANCE: Preload Critical Fonts ═══ -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@600;700;800&display=swap"></noscript>
+
+  <!-- ═══ PERFORMANCE: Bootstrap CSS — preload trick ═══ -->
+  <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"></noscript>
+
+  <!-- ═══ PERFORMANCE: Font Awesome — preload trick ═══ -->
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
+  <!-- ═══ PERFORMANCE: Custom CSS — preload trick ═══ -->
+  <link rel="preload" as="style" href="css/style.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="css/style.css"></noscript>
+
+  <!-- ═══ PERFORMANCE: Critical CSS Inline (above-the-fold, eliminasi FOUC) ═══ -->
+  <style>
+    /* ── CSS Variables (dibutuhkan oleh Critical CSS) ── */
+    :root{--primary:#0E8A7D;--primary-dark:#096B61;--primary-light:#12B09F;--secondary:#F5A623;--dark:#0F1C2E;--dark-2:#1A2F45;--gray-700:#2D3748;--white:#FFFFFF;--font-main:'Inter',sans-serif;--font-heading:'Poppins',sans-serif;--shadow-primary:0 8px 24px rgba(14,138,125,.35);--radius:16px;--transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+    /* ── Reset ── */
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-main);color:var(--gray-700);background:#fff;overflow-x:hidden;line-height:1.7;margin:0}
+    h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:700;line-height:1.3}
+    a{text-decoration:none}
+    img{max-width:100%}
+    /* ── Navbar ── */
+    .navbar{padding:16px 0;transition:var(--transition);z-index:1000;background:transparent;position:fixed;top:0;width:100%}
+    .navbar-brand{display:flex;align-items:center;gap:10px}
+    .brand-logo-img{border-radius:10px;display:block}
+    .brand-text{display:flex;flex-direction:column;line-height:1.1}
+    .brand-name{font-family:var(--font-heading);font-weight:800;font-size:1.15rem;color:#fff!important;text-shadow:0 2px 4px rgba(0,0,0,.3)}
+    .brand-tagline{font-size:.65rem;color:var(--secondary)!important;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+    /* ── Hero Section ── */
+    .hero-section{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-top:110px;padding-bottom:50px}
+    .hero-bg{position:absolute;inset:0;background-image:url('images/hero-bromo-sunrise.webp');background-size:cover;background-position:center 30%;background-attachment:fixed;filter:brightness(.78);transform:scale(1.04);transition:transform 9s cubic-bezier(.16,1,.3,1)}
+    .hero-section.loaded .hero-bg{transform:scale(1)}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,17,28,.52) 0%,rgba(8,17,28,.72) 55%,#08111C 100%),radial-gradient(ellipse at 80% 30%,rgba(245,158,11,.12) 0%,transparent 60%);pointer-events:none}
+    .hero-content{position:relative;z-index:2;padding-top:0;width:100%}
+    .hero-title{font-size:clamp(2.3rem,4.8vw,3.75rem);font-weight:750;color:#fff;line-height:1.18;letter-spacing:-.025em;margin-bottom:20px}
+    .hero-title-gradient{background:linear-gradient(135deg,#FFFBEB 0%,#FDE68A 35%,#F59E0B 75%,#D97706 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:inline;font-weight:800}
+    .hero-subtitle{font-size:1.05rem;color:rgba(226,232,240,.88);line-height:1.75;max-width:580px;margin-bottom:22px;font-weight:400}
+    .hero-badge-lux{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:7px 18px;color:#F1F5F9;font-size:.8rem;font-weight:500;letter-spacing:.3px;margin-bottom:22px}
+    .hero-badge-dot{width:8px;height:8px;background:#10B981;border-radius:50%;box-shadow:0 0 10px #10B981;display:inline-block;flex-shrink:0}
+    .hero-trust-chips{margin-bottom:30px}
+    .hero-trust-chip{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:rgba(241,245,249,.9);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:6px 14px}
+    .hero-cta-group{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+    .btn-hero-lux-primary{background:linear-gradient(135deg,#0E8A7D 0%,#0A6B61 100%);color:#fff;padding:13px 26px;border-radius:12px;font-weight:600;font-size:.92rem;display:inline-flex;align-items:center;gap:9px;box-shadow:0 4px 20px rgba(14,138,125,.4),inset 0 1px 0 rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.15);text-decoration:none}
+    .btn-hero-lux-secondary{background:rgba(255,255,255,.08);color:#fff;padding:13px 26px;border-radius:12px;font-weight:600;font-size:.92rem;display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(255,255,255,.22);text-decoration:none}
+    .hero-character-container{position:relative;display:flex;align-items:flex-end;justify-content:center;height:100%}
+    .hero-character-wrap{position:relative;z-index:2}
+    .hero-character-img{max-height:520px;width:auto;display:block;filter:drop-shadow(0 20px 60px rgba(0,0,0,.7))}
+    .hero-character-glow{position:absolute;bottom:-10%;left:50%;transform:translateX(-50%);width:80%;height:50%;background:radial-gradient(ellipse,rgba(14,138,125,.35) 0%,transparent 70%);filter:blur(30px);pointer-events:none}
+    /* ── Hero Stats ── */
+    .hero-stats-inline{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:0;background:rgba(255,255,255,.05);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:16px 28px;margin-top:16px;flex-wrap:wrap}
+    .hero-stat-item{text-align:center;padding:4px 20px;flex:1;min-width:80px}
+    .hero-stat-divider{width:1px;height:40px;background:rgba(255,255,255,.15)}
+    .stat-num{font-size:1.6rem;font-weight:800;color:#fff;line-height:1}
+    .stat-label{font-size:.72rem;color:rgba(255,255,255,.6);margin-top:4px;font-weight:500}
+    /* ── Container utility ── */
+    .container{width:100%;padding-right:1rem;padding-left:1rem;margin-right:auto;margin-left:auto}
+    @media(min-width:576px){.container{max-width:540px}}
+    @media(min-width:768px){.container{max-width:720px}}
+    @media(min-width:992px){.container{max-width:960px}}
+    @media(min-width:1200px){.container{max-width:1140px}}
+    @media(min-width:1400px){.container{max-width:1320px}}
+    /* ── Row/Col utility (critical for layout) ── */
+    .row{display:flex;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}
+    [class*='col-']{padding-right:.5rem;padding-left:.5rem}
+    @media(min-width:992px){.col-lg-5{width:41.6667%;flex:0 0 auto}.col-lg-7{width:58.3333%;flex:0 0 auto}}
+    @media(min-width:1200px){.col-xl-5{width:41.6667%;flex:0 0 auto}.col-xl-7{width:58.3333%;flex:0 0 auto}}
+    /* ── Navbar responsive ── */
+    .navbar-collapse{display:flex!important;flex-basis:auto}
+    .navbar-expand-lg .navbar-collapse{display:flex!important;flex-basis:auto}
+    .fixed-top{position:fixed;top:0;right:0;left:0;z-index:1030}
+  </style>
 
   <!-- JSON-LD Schema -->
   <script type="application/ld+json">
@@ -402,6 +483,7 @@
                    class="hero-character-img" 
                    width="530" 
                    height="505" 
+                   fetchpriority="high"
                    loading="eager">
             </div>
           </div>
@@ -1791,8 +1873,8 @@
   <!-- Back to Top -->
   <button id="backToTop" aria-label="Kembali ke atas"><i class="fas fa-chevron-up"></i></button>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap JS — defer agar tidak blocking render -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 
   <!-- Search to WhatsApp function -->
   <script>
@@ -1805,7 +1887,7 @@
     }
   </script>
 
-  <!-- Custom JS -->
-  <script src="js/main.js"></script>
+  <!-- Custom JS — defer agar tidak blocking render -->
+  <script src="js/main.js" defer></script>
 </body>
 </html>
