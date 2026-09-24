@@ -12,7 +12,7 @@ const backToTop = document.getElementById('backToTop');
 let isScrollTicking = false;
 
 function updateNavbarAndScrollState() {
-  const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+  const currentScrollY = window.scrollY;
   if (navbar) {
     if (currentScrollY > 60) {
       navbar.classList.add('scrolled');
@@ -39,12 +39,8 @@ function handleNavbarScroll() {
 }
 
 window.addEventListener('scroll', handleNavbarScroll, { passive: true });
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    window.requestAnimationFrame(updateNavbarAndScrollState);
-  }, { once: true });
-} else {
-  window.requestAnimationFrame(updateNavbarAndScrollState);
+if (window.scrollY > 60) {
+  updateNavbarAndScrollState();
 }
 
 // =============================================
@@ -224,19 +220,21 @@ document.querySelectorAll('.nav-item.dropdown').forEach((item) => {
   const toggle = item.querySelector('.dropdown-toggle');
   if (!toggle) return;
 
-  // Desktop: hover open
-  if (window.innerWidth > 991) {
-    item.addEventListener('mouseenter', () => {
+  // Desktop: hover open without forcing reflow on load
+  item.addEventListener('mouseenter', () => {
+    if (window.matchMedia('(min-width: 992px)').matches) {
       const menu = item.querySelector('.dropdown-menu');
       if (menu) menu.classList.add('show');
       toggle.setAttribute('aria-expanded', 'true');
-    });
-    item.addEventListener('mouseleave', () => {
+    }
+  });
+  item.addEventListener('mouseleave', () => {
+    if (window.matchMedia('(min-width: 992px)').matches) {
       const menu = item.querySelector('.dropdown-menu');
       if (menu) menu.classList.remove('show');
       toggle.setAttribute('aria-expanded', 'false');
-    });
-  }
+    }
+  });
 });
 
 // =============================================

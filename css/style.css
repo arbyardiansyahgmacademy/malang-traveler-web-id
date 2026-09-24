@@ -8245,6 +8245,12 @@ img {
   align-items: center;
   justify-content: center;
   padding: 10px 0;
+  width: 100%;
+  max-width: 530px;
+  margin: 0 auto;
+  min-height: 280px;
+  aspect-ratio: 530 / 505;
+  contain: layout style;
 }
 
 /* Ambient backlight behind the cutout (static, no pulsation) */
@@ -8272,6 +8278,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 /* The cutout image itself: enlarged to 530px, completely static */
@@ -8284,4 +8291,10 @@ img {
   object-fit: contain;
   filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.72)) drop-shadow(0 0 45px rgba(14, 138, 125, 0.22));
   user-select: none;
+}
+
+/* Modern CWV: Offscreen Content Deferral */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 600px;
 }
