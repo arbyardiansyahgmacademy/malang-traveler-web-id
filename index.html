@@ -29,20 +29,36 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
-  <!-- Preload Critical LCP Hero Image Candidate -->
-  <link rel="preload" as="image" href="images/side-hero/gambar-side-hero-clean.webp" fetchpriority="high">
+  <!-- Responsive Preload for LCP Hero Image -->
+  <link rel="preload" as="image" href="images/side-hero/gambar-side-hero-360w.webp" media="(max-width: 767.98px)" fetchpriority="high">
+  <link rel="preload" as="image" href="images/side-hero/gambar-side-hero-clean.webp" media="(min-width: 768px)" fetchpriority="high">
 
-  <!-- Google Fonts: Inter & Poppins -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap">
+  <!-- Streamlined Google Fonts: Inter & Poppins (Swappable & Non-blocking) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700;800&display=swap"></noscript>
 
-  <!-- Bootstrap 5 CSS -->
+  <!-- Font Awesome (Deferred Non-blocking Icons) -->
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
+  <!-- Core Layout Stylesheets (Synchronous to prevent FOUC & style flash) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
+
+  <script>
+    // Bulletproof Non-blocking Stylesheet Activator
+    (function(){
+      var links = document.querySelectorAll('link[media="print"]');
+      for (var i = 0; i < links.length; i++) {
+        (function(l){
+          l.addEventListener('load', function(){ l.media = 'all'; });
+          setTimeout(function(){ l.media = 'all'; }, 100);
+        })(links[i]);
+      }
+    })();
+  </script>
 
   <!-- JSON-LD Schema -->
   <script type="application/ld+json">
@@ -422,9 +438,12 @@
 
             <!-- Gambar Cutout Tanpa Background Kotak -->
             <div class="hero-character-wrap">
-              <img src="images/side-hero/gambar-side-hero-clean.webp"
-                alt="Corporate Gathering & Offroad Adventure Malang Traveler" class="hero-character-img" width="530"
-                height="505" fetchpriority="high" decoding="async">
+              <picture>
+                <source media="(max-width: 767.98px)" srcset="images/side-hero/gambar-side-hero-360w.webp" type="image/webp">
+                <img src="images/side-hero/gambar-side-hero-clean.webp"
+                  alt="Corporate Gathering & Offroad Adventure Malang Traveler" class="hero-character-img" width="530"
+                  height="505" fetchpriority="high" decoding="async">
+              </picture>
             </div>
           </div>
         </div>

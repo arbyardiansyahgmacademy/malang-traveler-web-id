@@ -3136,8 +3136,6 @@ img {
   .hero-character-img {
     max-width: 320px !important;
     width: 90% !important;
-    height: auto !important;
-    aspect-ratio: 530 / 505 !important;
   }
 
   /* Hero Stats — Clean 2x2 Grid */
@@ -8279,7 +8277,6 @@ img {
   width: 100%;
   max-width: 530px;
   height: auto;
-  aspect-ratio: 530 / 505;
   display: block;
   object-fit: contain;
   filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.72)) drop-shadow(0 0 45px rgba(14, 138, 125, 0.22));
