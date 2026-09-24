@@ -8,27 +8,44 @@
 // NAVBAR: Shrink on Scroll
 // =============================================
 const navbar = document.getElementById('mainNavbar');
+const backToTop = document.getElementById('backToTop');
+let isScrollTicking = false;
 
-function handleNavbarScroll() {
-  if (window.scrollY > 60) {
-    navbar?.classList.add('scrolled');
-  } else {
-    navbar?.classList.remove('scrolled');
+function updateNavbarAndScrollState() {
+  const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+  if (navbar) {
+    if (currentScrollY > 60) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
   }
 
-  // Back to Top
-  const backToTop = document.getElementById('backToTop');
   if (backToTop) {
-    if (window.scrollY > 400) {
+    if (currentScrollY > 400) {
       backToTop.classList.add('visible');
     } else {
       backToTop.classList.remove('visible');
     }
   }
+  isScrollTicking = false;
+}
+
+function handleNavbarScroll() {
+  if (!isScrollTicking) {
+    window.requestAnimationFrame(updateNavbarAndScrollState);
+    isScrollTicking = true;
+  }
 }
 
 window.addEventListener('scroll', handleNavbarScroll, { passive: true });
-handleNavbarScroll();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    window.requestAnimationFrame(updateNavbarAndScrollState);
+  }, { once: true });
+} else {
+  window.requestAnimationFrame(updateNavbarAndScrollState);
+}
 
 // =============================================
 // BACK TO TOP
@@ -70,17 +87,25 @@ document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el) =
 // COUNTER ANIMATION (Stats)
 // =============================================
 function animateCounter(el, target, suffix = '') {
-  let start = 0;
-  const duration = 2000;
-  const increment = target / (duration / 16);
-  const timer = setInterval(() => {
-    start += increment;
-    if (start >= target) {
-      start = target;
-      clearInterval(timer);
+  const duration = 1800;
+  let startTime = null;
+
+  function step(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const progress = Math.min((timestamp - startTime) / duration, 1);
+    // easeOutQuad
+    const easeProgress = 1 - (1 - progress) * (1 - progress);
+    const current = Math.floor(easeProgress * target);
+    el.textContent = current.toLocaleString('id-ID') + suffix;
+
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    } else {
+      el.textContent = target.toLocaleString('id-ID') + suffix;
     }
-    el.textContent = Math.floor(start).toLocaleString('id-ID') + suffix;
-  }, 16);
+  }
+
+  window.requestAnimationFrame(step);
 }
 
 const counterObserver = new IntersectionObserver(

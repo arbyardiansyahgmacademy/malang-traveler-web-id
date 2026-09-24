@@ -23,12 +23,34 @@
   <!-- Favicon -->
   <link rel="icon" type="image/webp" href="images/logo-utama-web-malang-traveler/logo-malang-traveler-fix.webp">
 
-  <!-- Bootstrap 5 -->
+  <!-- Preconnect to external CDNs and Font Origins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+  <!-- Preload Critical LCP Hero Image Candidate -->
+  <link rel="preload" as="image" href="images/side-hero/gambar-side-hero-clean.webp" fetchpriority="high">
+
+  <!-- Google Fonts: Inter & Poppins (Optimized & Non-blocking) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap">
+  </noscript>
+
+  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Custom CSS (Minified) -->
+  <link rel="stylesheet" href="css/style.min.css">
+
+  <!-- Font Awesome (Non-blocking to eliminate render-blocking chain) -->
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  </noscript>
 
   <!-- JSON-LD Schema -->
   <script type="application/ld+json">
@@ -153,7 +175,7 @@
       <!-- Brand -->
       <a class="navbar-brand" href="/">
         <img src="images/logo-utama-web-malang-traveler/logo-malang-traveler-fix.webp" alt="Logo Malang Traveler"
-          class="brand-logo-img" width="44" height="44">
+          class="brand-logo-img" width="44" height="44" decoding="async">
         <div class="brand-text">
           <span class="brand-name">Malang Traveler</span>
           <span class="brand-tagline">Explore Malang Raya</span>
@@ -185,7 +207,7 @@
                 <div class="mega-menu-header d-flex align-items-center justify-content-between">
                   <div>
                     <span class="mega-badge"><i class="fas fa-compass me-1"></i> Jelajahi Aktivitas</span>
-                    <h6 class="mega-title mb-0">Pilihan Program Malang Traveler</h6>
+                    <div class="mega-title mb-0">Pilihan Program Malang Traveler</div>
                   </div>
                   <a href="program" class="mega-view-all">Lihat Semua Program <i
                       class="fas fa-arrow-right ms-1"></i></a>
@@ -410,7 +432,7 @@
             <div class="hero-character-wrap">
               <img src="images/side-hero/gambar-side-hero-clean.webp"
                 alt="Corporate Gathering & Offroad Adventure Malang Traveler" class="hero-character-img" width="530"
-                height="505" loading="eager">
+                height="505" fetchpriority="high" decoding="async">
             </div>
           </div>
         </div>
@@ -1174,7 +1196,7 @@
               <div class="assist-feature">
                 <div class="assist-feature-icon"><i class="fas fa-tags"></i></div>
                 <div class="assist-feature-text">
-                  <h6>Harga Terbaik</h6>
+                  <h3 class="assist-feature-title">Harga Terbaik</h3>
                   <p>Penawaran kompetitif</p>
                 </div>
               </div>
@@ -1183,7 +1205,7 @@
               <div class="assist-feature">
                 <div class="assist-feature-icon"><i class="fas fa-headset"></i></div>
                 <div class="assist-feature-text">
-                  <h6>Support 24/7</h6>
+                  <h3 class="assist-feature-title">Support 24/7</h3>
                   <p>Siap membantu Anda</p>
                 </div>
               </div>
@@ -1192,7 +1214,7 @@
               <div class="assist-feature">
                 <div class="assist-feature-icon"><i class="fas fa-lock"></i></div>
                 <div class="assist-feature-text">
-                  <h6>Booking Aman</h6>
+                  <h3 class="assist-feature-title">Booking Aman</h3>
                   <p>Pesan dengan percaya diri</p>
                 </div>
               </div>
@@ -1503,7 +1525,7 @@
                 <div class="d-flex align-items-center justify-content-between mb-3">
                   <div class="d-flex align-items-center gap-2">
                     <img src="images/author-artikel/author-artikel-arby-ardiansyah.webp" alt="Arby Ardiansyah"
-                      class="blog-author-portrait-sm" width="38" height="38">
+                      class="blog-author-portrait-sm" width="38" height="38" loading="lazy" decoding="async">
                     <div>
                       <div class="fw-bold" style="font-size: 0.82rem; color: #1E293B;">Arby Ardiansyah</div>
                       <div class="text-muted" style="font-size: 0.72rem;">18 Sep 2026 • 6 min baca</div>
@@ -1541,7 +1563,7 @@
                 <div class="d-flex align-items-center justify-content-between mb-3">
                   <div class="d-flex align-items-center gap-2">
                     <img src="images/author-artikel/author-artikel-dimas-pratama.webp" alt="Dimas Pratama"
-                      class="blog-author-portrait-sm" width="38" height="38">
+                      class="blog-author-portrait-sm" width="38" height="38" loading="lazy" decoding="async">
                     <div>
                       <div class="fw-bold" style="font-size: 0.82rem; color: #1E293B;">Dimas Pratama</div>
                       <div class="text-muted" style="font-size: 0.72rem;">15 Sep 2026 • 4 min baca</div>
@@ -1579,7 +1601,7 @@
                 <div class="d-flex align-items-center justify-content-between mb-3">
                   <div class="d-flex align-items-center gap-2">
                     <img src="images/author-artikel/author-artikel-sarah-anindya.webp" alt="Sarah Anindya"
-                      class="blog-author-portrait-sm" width="38" height="38">
+                      class="blog-author-portrait-sm" width="38" height="38" loading="lazy" decoding="async">
                     <div>
                       <div class="fw-bold" style="font-size: 0.82rem; color: #1E293B;">Sarah Anindya</div>
                       <div class="text-muted" style="font-size: 0.72rem;">12 Sep 2026 • 5 min baca</div>
@@ -1819,7 +1841,7 @@
           <div class="footer-brand">
             <a href="/" class="navbar-brand mb-3 d-inline-flex" style="padding: 0;">
               <img src="images/logo-utama-web-malang-traveler/logo-malang-traveler-fix.webp" alt="Logo Malang Traveler"
-                class="brand-logo-img" width="44" height="44">
+                class="brand-logo-img" width="44" height="44" loading="lazy" decoding="async">
               <div class="brand-text ms-2">
                 <span class="brand-name">Malang Traveler</span>
                 <span class="brand-tagline">Explore Malang Raya</span>
@@ -1840,7 +1862,7 @@
 
         <!-- Quick Links -->
         <div class="col-6 col-md-3 col-lg-2">
-          <h4 class="footer-title">Navigasi</h4>
+          <h3 class="footer-title">Navigasi</h3>
           <ul class="footer-links">
             <li><a href="/"><i class="fas fa-chevron-right"></i> Beranda</a></li>
             <li><a href="tentang-kami"><i class="fas fa-chevron-right"></i> Tentang Kami</a></li>
@@ -1855,7 +1877,7 @@
 
         <!-- Services -->
         <div class="col-6 col-md-3 col-lg-3">
-          <h4 class="footer-title">Layanan</h4>
+          <h3 class="footer-title">Layanan</h3>
           <ul class="footer-links">
             <li><a href="program/corporate-gathering"><i class="fas fa-chevron-right"></i> Corporate Gathering</a></li>
             <li><a href="program/team-building"><i class="fas fa-chevron-right"></i> Team Building</a></li>
@@ -1870,7 +1892,7 @@
 
         <!-- Contact -->
         <div class="col-12 col-md-3 col-lg-4">
-          <h4 class="footer-title">Kontak Kami</h4>
+          <h3 class="footer-title">Kontak Kami</h3>
           <div class="footer-contact-item">
             <div class="footer-contact-icon"><i class="fab fa-whatsapp"></i></div>
             <div>
@@ -1886,7 +1908,7 @@
           <div class="footer-contact-item">
             <div class="footer-contact-icon"><i class="fas fa-clock"></i></div>
             <p>Senin – Minggu: 08.00 – 20.00 WIB<br>
-              <span style="color: var(--primary);">• Fast Response via WhatsApp</span>
+              <span style="color: #2DD4BF; font-weight: 600;">• Fast Response via WhatsApp</span>
             </p>
           </div>
           <div class="footer-contact-item">
@@ -1927,7 +1949,7 @@
       <!-- Bottom -->
       <div class="footer-bottom">
         <p>© 2026 Malang Traveler. Hak Cipta Dilindungi. — <a href="https://malangtraveler.web.id"
-            style="color: var(--primary);">malangtraveler.web.id</a></p>
+            style="color: #2DD4BF; text-decoration: underline; font-weight: 600;">malangtraveler.web.id</a></p>
         <div class="footer-bottom-links">
           <a href="#">Kebijakan Privasi</a>
           <a href="#">Syarat & Ketentuan</a>
@@ -1951,8 +1973,8 @@
   <!-- Back to Top -->
   <button id="backToTop" aria-label="Kembali ke atas"><i class="fas fa-chevron-up"></i></button>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap JS (Deferred) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 
   <!-- Search to WhatsApp function -->
   <script>
@@ -1965,8 +1987,8 @@
     }
   </script>
 
-  <!-- Custom JS -->
-  <script src="js/main.js"></script>
+  <!-- Custom JS (Minified & Deferred) -->
+  <script src="js/main.min.js" defer></script>
 </body>
 
 </html>
