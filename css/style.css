@@ -2879,8 +2879,7 @@ img {
   /* Navbar Header */
   .navbar {
     padding: 10px 0 !important;
-    background: rgba(8, 17, 28, 0.92) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
   }
