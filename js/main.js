@@ -39,8 +39,19 @@ function handleNavbarScroll() {
 }
 
 window.addEventListener('scroll', handleNavbarScroll, { passive: true });
-if (window.scrollY > 60) {
-  updateNavbarAndScrollState();
+// Sync initial scroll state on reload without forced reflow
+window.requestAnimationFrame(updateNavbarAndScrollState);
+
+// Native Mobile Navbar Toggler (No bootstrap JS dependency)
+const navToggler = document.querySelector('.navbar-toggler');
+const navCollapse = document.getElementById('navbarMain');
+if (navToggler && navCollapse) {
+  navToggler.addEventListener('click', (e) => {
+    e.preventDefault();
+    navCollapse.classList.toggle('show');
+    const isExpanded = navCollapse.classList.contains('show');
+    navToggler.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+  });
 }
 
 // =============================================
@@ -799,12 +810,31 @@ document.querySelectorAll('.luxury-btn-detail').forEach((btn) => {
     if (waDirect) waDirect.href = waUrl;
     if (waAction) waAction.href = waUrl;
 
-    // Trigger Bootstrap modal
-    if (window.bootstrap && bootstrap.Modal) {
+    // Trigger Bootstrap modal (loads on-demand if not already loaded)
+    loadBootstrap(() => {
       const bsModal = bootstrap.Modal.getOrCreateInstance(modalElem);
       bsModal.show();
-    }
+    });
   });
 });
+
+// Lazy Bootstrap Loader (Only when needed or idle)
+function loadBootstrap(cb) {
+  if (window.bootstrap && bootstrap.Modal) {
+    if (cb) cb();
+    return;
+  }
+  const s = document.createElement('script');
+  s.src = 'js/bootstrap.bundle.min.js';
+  s.defer = true;
+  s.onload = () => { if (cb) cb(); };
+  document.body.appendChild(s);
+}
+
+if ('requestIdleCallback' in window) {
+  requestIdleCallback(() => setTimeout(loadBootstrap, 4000));
+} else {
+  setTimeout(loadBootstrap, 5000);
+}
 
 console.log('%cMalang Traveler Web ID — Initialized', 'color:#0E8A7D;font-weight:bold;font-size:14px');
